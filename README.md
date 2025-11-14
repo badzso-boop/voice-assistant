@@ -6,6 +6,7 @@ Ez a projekt egy hobby célú **beszélő okos asszisztens** alapját valósítj
 
 ## Projekt struktúra
 
+```
 voice-assistant
 │ docker-compose.yml
 ├───api
@@ -26,6 +27,7 @@ voice-assistant
 │ │ tts-app.py
 │ │ Dockerfile
 │ │ requirements.txt
+```
 
 ---
 
