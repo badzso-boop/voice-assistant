@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  api:
+    build: ./api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api:/api-app
+    depends_on:
+      - stt
+      - llm
+      - tts
+
+  stt:
+    build: ./speech-to-text
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./speech-to-text:/stt-app
+
+  llm:
+    build: ./large-language-model
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./large-language-model:/llm-app
+
+  tts:
+    build: ./text-to-speech
+    ports:
+      - "5003:5003"
+    volumes:
+      - ./text-to-speech:/tts-app
