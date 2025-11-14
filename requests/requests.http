@@ -2,5 +2,5 @@ POST http://127.0.0.1:5000/process
 Content-Type: application/json
 
 {
-  "text": "Hello world"
+  "text": "Tell a short joke in English language!"
 }

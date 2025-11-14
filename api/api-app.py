@@ -15,7 +15,7 @@ class InputModel(BaseModel):
 
 @app.post("/process")
 async def process(data: InputModel):
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=100.0) as client:
         # POST 1 → STT
         stt_resp = await client.post(STT_URL, json={"text": data.text})
         

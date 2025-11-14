@@ -8,9 +8,6 @@ WORKDIR /stt-app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Másoljuk a kódot
-# COPY stt-app.py .
-
 # Port, amin a service fut
 EXPOSE 5001
 

@@ -98,3 +98,7 @@ __pypackages__/
 *.env
 *.dockerfile
 *.log
+
+#LLM
+models/
+llama.cpp/
