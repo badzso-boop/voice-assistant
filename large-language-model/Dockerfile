@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 
-# Fix libllama.so betöltésére
+# libllama.so betöltésére
 ENV LD_LIBRARY_PATH="/llm-app/llama.cpp/build/bin:${LD_LIBRARY_PATH}"
 
 # Vissza az app mappába

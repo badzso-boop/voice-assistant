@@ -102,3 +102,4 @@ __pypackages__/
 #LLM
 models/
 llama.cpp/
+whisper.cpp/

@@ -6,11 +6,17 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
-MODEL_PATH = "models/ggml-model-q4_0.gguf"
+MODEL_PATH = "models/llama-2-13b-chat.Q4_0.gguf"
 LLAMA_CPP_BIN = "/llm-app/llama.cpp/build/bin/llama-cli"
 
 class InputModel(BaseModel):
     text: str
+
+@app.post("/respond-test")
+async def process(data: InputModel):
+    return {
+        "llm-text": data.text + " made with llm api"
+    }
 
 @app.post("/respond")
 async def process(data: InputModel):
