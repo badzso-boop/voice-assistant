@@ -100,7 +100,43 @@ A Llama.cpp használatához szükséged van egy GGUF formátumú modellre.
 - Példa: TinyLLaMA GGUF modell (https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v0.2-GGUF)
 - A modellt helyezd el a következő mappába: `large-language-model/models`
 
-5. LLM FastAPI (`llm-app.py`) működése
+5. LLM FastAPI (`llm-app.py`) működik
+
+
+### Speech To Text (STT)
+
+A `speech-to-text` mappa tartalmazza a **Whisper.cpp**-t és a `stt-app.py` FastAPI szolgáltatást, ami audio fájlokat (`.wav`/`.mp3`) alakít szöveggé.
+
+1. Whisper.cpp klonozasa
+A klónozott mappa a speech-to-text alá kerüljön.
+```bash
+git clone https://github.com/ggerganov/whisper.cpp.git
+```
+
+2. WSL/Linux függőségek
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake python3-pip wget
+```
+
+3. Python csomagok telepítése
+```bash
+cd speech-to-text/whisper.cpp
+pip install -r requirements.txt
+```
+A `speech-to-text/requirements.txt` tartalmaz minden szükséges Python csomagot, amit a FastAPI service használ.
+
+4. Whisper.cpp build
+```bash
+cd speech-to-text/whisper.cpp
+cmake -B build
+cmake --build build -j 8 --config Release
+```
+A `whisper-cli` bináris a `speech-to-text/whisper.cpp/build/bin/whisper-cli` alatt lesz elérhető.
+
+5. Modell letöltése
+`speech-to-text/shisper.cpp/model` mappaba töltsd le ezt:
+https://huggingface.co/ggerganov/whisper.cpp/blob/main/ggml-base.en.bin
 
 
 ### Példa API hívás
