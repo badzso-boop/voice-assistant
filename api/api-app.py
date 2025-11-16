@@ -49,7 +49,7 @@ async def process_audio(file: UploadFile = File(...)):
     stt_text = stt_resp.json().get("text", "")
 
     # 2. Küldjük el az LLM-nek
-    async with httpx.AsyncClient(timeout=100.0) as client:
+    async with httpx.AsyncClient(timeout=None) as client:
         llm_resp = await client.post(
             LLM_URL,
             json={"text": stt_text}
