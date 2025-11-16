@@ -3,6 +3,7 @@ import numpy as np
 from scipy.io.wavfile import write
 import requests
 import time
+import os
 
 # --- KONFIG ---
 SAMPLE_RATE = 44100
@@ -17,6 +18,11 @@ def is_loud(chunk, threshold):
     volume = np.linalg.norm(chunk) / len(chunk)
     return volume > threshold
 
+def play_audio(path):
+    print(f"🔊 Lejátszás: {path}")
+    sr, audio = read(path)
+    sd.play(audio, sr)
+    sd.wait()
 
 def main():
     print("🎤 Mikrofon figyelése... (Ctrl+C kilép)")
@@ -63,7 +69,12 @@ def main():
                                         API_ENDPOINT,
                                         files={"file": (OUTPUT_FILE, f, "audio/wav")}
                                     )
-                                print("🌐 API válasza:", r.text)
+                                print("🌐 API válasza:", r.json())
+                                tts_file = r.json().get("tts_file")
+                                if tts_file and os.path.exists(tts_file):
+                                    play_audio(tts_file)
+                                else:
+                                    print("⚠️ TTS fájl nem található!")
                             except Exception as e:
                                 print("❌ API hiba:", e)
 

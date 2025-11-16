@@ -4,6 +4,12 @@ FROM python:3.11-slim
 # Working directory
 WORKDIR /tts-app
 
+# Install OS packages required for audio + TTS
+RUN apt-get update && apt-get install -y \
+    ffmpeg \
+    libsndfile1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Másoljuk a requirements-et és telepítjük
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt

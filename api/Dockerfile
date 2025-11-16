@@ -8,11 +8,8 @@ WORKDIR /api-app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Másoljuk a kódot
-COPY api-app.py .
-
 # Port, amin a service fut
 EXPOSE 5000
 
 # Indítás uvicorn-nal
-CMD ["uvicorn", "api-app:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "api-app:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
